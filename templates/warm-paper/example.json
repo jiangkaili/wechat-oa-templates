@@ -8,7 +8,7 @@
   },
   "sections": [
     {
-      "heading": "前沿速递",
+      "heading": "24小时AI大事件",
       "items": [
         "GPT-5.6 发布<br/>OpenAI 发布 GPT-5.6，原生支持图像、音频、视频联合推理，API 定价降低 40%（6月28日）",
         "Gemini 3 登顶<br/>谷歌 Gemini 3 在 MMLU 基准测试得分 92.7%，首次超越人类专家水平（6月28日）"
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "heading": "开源动态",
+      "heading": "开源雷达",
       "items": [
         "Llama 4 开源<br/>Meta 以 MIT 许可开源 Llama 4，支持 1M 上下文窗口，HuggingFace 下载量破百万（6月27日）"
       ],

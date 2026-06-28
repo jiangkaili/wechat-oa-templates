@@ -63,11 +63,19 @@ def compose_html(article_data, image_urls):
     if trends:
         parts.append(
             f'<p style="font-size:18px;font-weight:bold;color:{TEXT};margin:40px 0 20px;'
-            f'padding-bottom:10px;border-bottom:1px solid {BORDER};">趋势观察</p>'
+            f'padding-bottom:10px;border-bottom:1px solid {BORDER};">深度解码</p>'
         )
         for trend in trends:
             trend = colorUpDown(trend)
             parts.append(f'<p style="font-size:15px;color:{BODY};line-height:1.8;margin:0 0 16px;">{trend}</p>')
+
+        # Interaction question
+        interaction = article_data.get("interaction", "")
+        if interaction:
+            parts.append(
+                f'<p style="margin:28px 0 0;padding-top:16px;border-top:1px solid {BORDER};'
+                f'font-size:16px;color:{TEXT};line-height:1.8;font-weight:600;">{interaction}</p>'
+            )
 
     parts.append('</section>')
 

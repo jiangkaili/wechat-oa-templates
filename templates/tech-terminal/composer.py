@@ -110,5 +110,14 @@ def compose_html(article_data, image_urls):
             )
         out.append('</section>')
 
+        # Interaction question
+        interaction = article_data.get("interaction", "")
+        if interaction:
+            out.append(
+                f'<p style="margin:28px 0 0;padding-top:16px;border-top:1px solid #333333;'
+                f'font-size:16px;color:#00FF41;line-height:1.8;font-weight:600;">{interaction}</p>'
+            )
+
     out.append('</section>')
+
     return "".join(out)
