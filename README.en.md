@@ -1,4 +1,4 @@
-# wechat-ai-briefing
+# wechat-oa-templates
 
 > A pluggable WeChat Official Account article template gallery with a Python publisher that auto-creates drafts via the WeChat MP API.
 
@@ -103,7 +103,7 @@ Set `"style": "your-style"` in the JSON to use it.
 ## Project Layout
 
 ```
-wechat-ai-briefing/
+wechat-oa-templates/
 ├── publish_generic.py       # Publisher (main entry point)
 ├── clean_drafts.py          # Batch draft cleanup tool
 ├── creds.example.py         # Credential template

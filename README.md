@@ -1,4 +1,4 @@
-# wechat-ai-briefing
+# wechat-oa-templates
 
 > 一套可插拔的微信公众号文章排版模板，配合 Python 发布脚本，自动创建草稿到公众号后台。
 
@@ -177,7 +177,7 @@ JSON 中设 `"style": "your-style"` 即可使用。
 ## 项目结构 Project Layout
 
 ```
-wechat-ai-briefing/
+wechat-oa-templates/
 ├── publish_generic.py       # 发布脚本 (主入口)
 ├── clean_drafts.py          # 草稿批量清理工具
 ├── creds.example.py         # 凭证模板
