@@ -1,34 +1,33 @@
 {
-  "template": "tech-terminal",
-  "article_data": {
-    "title": "AI前哨 · 每日技术速递",
-    "digest": "用终端美学读懂今日 AI 动态",
-    "vol": "042",
-    "sections": [
-      {
-        "heading": "MODEL RELEASES",
-        "items": [
-          "Hermes-5 发布<br/>Nous Research 开源 Hermes-5，上下文扩展至 256K，推理速度提升 35%（6月27日）",
-          "GLM-5.2 上线<br/>智谱 AI 推出 GLM-5.2，多语言基准测试平均得分 +12.4%（6月27日）"
-        ],
-        "images": []
-      },
-      {
-        "heading": "INDUSTRY NEWS",
-        "items": [
-          "算力市场动态<br/>H100 现货价格 -8.2%，云厂商预订量 +15.0%（6月27日）",
-          "开源生态<br/>HuggingFace 模型库突破 100 万，日均下载量 +22.7%"
-        ],
-        "images": []
-      }
-    ],
-    "trends": [
-      "大模型训练成本 -18.5%，推理成本 -11.3%",
-      "Agent 框架 GitHub Star 周 +9.4%",
-      "多模态论文数量 +27.1%"
-    ]
+  "title": "GPT-5.6 发布，AI 进入多模态推理时代",
+  "digest": "OpenAI 发布 GPT-5.6 · 谷歌 Gemini 3 登顶 · Meta 开源 Llama 4",
+  "author": "AI前哨",
+  "vol": "AI.001",
+  "cover": {
+    "bg_image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900"
   },
-  "image_urls": {
-    "cover": ""
-  }
+  "sections": [
+    {
+      "heading": "前沿速递",
+      "items": [
+        "GPT-5.6 发布<br/>OpenAI 发布 GPT-5.6，原生支持图像、音频、视频联合推理，API 定价降低 40%（6月28日）",
+        "Gemini 3 登顶<br/>谷歌 Gemini 3 在 MMLU 基准测试得分 92.7%，首次超越人类专家水平（6月28日）"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600"
+      ]
+    },
+    {
+      "heading": "开源动态",
+      "items": [
+        "Llama 4 开源<br/>Meta 以 MIT 许可开源 Llama 4，支持 1M 上下文窗口，HuggingFace 下载量破百万（6月27日）"
+      ],
+      "images": []
+    }
+  ],
+  "trends": [
+    "开源逼近前沿：Llama 4 与 GPT-5.6 能力差缩小至 5% 以内，企业自部署窗口加速到来",
+    "推理成本 -18.5%：大模型 API 价格战持续，调用成本季度环比下降近两成"
+  ],
+  "style": "tech-terminal"
 }

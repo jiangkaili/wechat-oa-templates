@@ -1,26 +1,33 @@
 {
-  "style": "dark-mode",
-  "title": "AI芯片出口管制升级，国产替代迎来窗口期",
-  "digest": "英伟达市值波动 · 国产GPU性能追赶 · AI算力自主可控加速",
+  "title": "GPT-5.6 发布，AI 进入多模态推理时代",
+  "digest": "OpenAI 发布 GPT-5.6 · 谷歌 Gemini 3 登顶 · Meta 开源 Llama 4",
+  "author": "AI前哨",
   "vol": "AI.001",
   "cover": {
-    "bg_image": "https://example.com/cover.jpg"
+    "bg_image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900"
   },
   "sections": [
     {
       "heading": "前沿速递",
       "items": [
-        "英伟达股价单日波动 +3.2%，市场对出口管制反应分化<br/>受出口管制升级消息影响，英伟达盘中股价上涨 +3.2%，但随后回落至 -1.1%。分析师认为短期波动不改长期算力需求逻辑，半导体板块整体资金净流入。（6月27日）",
-        "国产GPU性能对标A100，推理成本下降 -18%<br/>某国产芯片厂商发布新一代AI加速卡，性能对标英伟达A100，单卡推理成本较上代下降 -18%，已在多家大模型厂商完成适配，预计三季度量产。（6月27日）"
+        "GPT-5.6 发布<br/>OpenAI 发布 GPT-5.6，原生支持图像、音频、视频联合推理，API 定价降低 40%（6月28日）",
+        "Gemini 3 登顶<br/>谷歌 Gemini 3 在 MMLU 基准测试得分 92.7%，首次超越人类专家水平（6月28日）"
       ],
       "images": [
-        "https://example.com/img1.jpg",
-        "https://example.com/img2.jpg"
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600"
       ]
+    },
+    {
+      "heading": "开源动态",
+      "items": [
+        "Llama 4 开源<br/>Meta 以 MIT 许可开源 Llama 4，支持 1M 上下文窗口，HuggingFace 下载量破百万（6月27日）"
+      ],
+      "images": []
     }
   ],
   "trends": [
-    "算力自主可控：国产GPU性能持续追赶，出口管制倒逼国产替代加速，AI算力供应链正在重塑。",
-    "市场分化加剧：英伟达股价单日 +3.2% 后回落 -1.1%，反映市场对出口管制的预期分歧。"
-  ]
+    "开源逼近前沿：Llama 4 与 GPT-5.6 能力差缩小至 5% 以内，企业自部署窗口加速到来",
+    "推理成本 -18.5%：大模型 API 价格战持续，调用成本季度环比下降近两成"
+  ],
+  "style": "dark-mode"
 }

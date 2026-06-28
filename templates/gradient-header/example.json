@@ -1,48 +1,33 @@
 {
-  "title": "AI前沿简报 | 2026年06月27日",
-  "digest": "GPT-5.6 Sol 限量预览 · GLM-5.2 评测登顶 · Claude Trusted Devices 上线 | 6条速递+趋势观察",
-  "vol": "AI.178",
-  "edition": "早间版",
-  "subtitle": "Anthropic · OpenAI · 智谱AI",
-  "author": "AI斥候",
-  "style": "gradient-header",
+  "title": "GPT-5.6 发布，AI 进入多模态推理时代",
+  "digest": "OpenAI 发布 GPT-5.6 · 谷歌 Gemini 3 登顶 · Meta 开源 Llama 4",
+  "author": "AI前哨",
+  "vol": "AI.001",
   "cover": {
     "bg_image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900"
   },
   "sections": [
     {
-      "heading": "ANTHROPIC",
-      "color": "#D97757",
+      "heading": "前沿速递",
       "items": [
-        "① Claude Trusted Devices 远程设备验证上线<br/>6月25日 Team/Enterprise 版管理员可要求成员在远程查看或操控本地 Claude Code 会话前先验证设备，企业级 Agent 安全再加一道闸。（6月25日）",
-        "② Claude API 用量高速增长<br/>本季度 API 调用量同比 +320%，企业版 ARR 环比 +45%，而每千 token 成本下降 -12%，规模效应持续显现。（6月26日）"
+        "GPT-5.6 发布<br/>OpenAI 发布 GPT-5.6，原生支持图像、音频、视频联合推理，API 定价降低 40%（6月28日）",
+        "Gemini 3 登顶<br/>谷歌 Gemini 3 在 MMLU 基准测试得分 92.7%，首次超越人类专家水平（6月28日）"
       ],
       "images": [
-        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800",
-        null
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600"
       ]
     },
     {
-      "heading": "OPENAI",
-      "color": "#10A37F",
+      "heading": "开源动态",
       "items": [
-        "③ GPT-5.6 Sol 旗舰模型限量预览<br/>6月26日推出 Sol 史上最强、Terra 性能比肩 GPT-5.5 且价格减半、Luna 最低价三档，新增 max 推理强度与 ultra 子智能体模式，号称迄今最稳安全栈。（6月26日）"
-      ],
-      "images": []
-    },
-    {
-      "heading": "智谱 AI",
-      "color": "#3B82FE",
-      "items": [
-        "④ GLM-5.2 评测多项登顶<br/>AIME 2026 拿 99.2 分全球第一、LMArena Code 位列全球第二仅次 Claude Fable 5 且为开源第一，SWE-Bench Pro 62.1、Terminal-Bench 2.1 达 81。（6月27日）"
+        "Llama 4 开源<br/>Meta 以 MIT 许可开源 Llama 4，支持 1M 上下文窗口，HuggingFace 下载量破百万（6月27日）"
       ],
       "images": []
     }
   ],
   "trends": [
-    "① 前沿模型发布进入政府审批时代：GPT-5.6 被限制放行，6 月 2 日行政令正把发布前评估制度化，前沿模型从即发即用转向审批后放行。",
-    "② AI Agent 计算机操控成主战场：Gemini 3.5 Flash 原生 computer use、OpenAI ultra 子智能体、智谱 GLM 长程 Agent 齐头并进，交互范式从对话迈向自主操作屏幕。",
-    "③ 旗舰模型分层定价加开源冲击闭源：OpenAI Sol/Terra/Luna、智谱旗舰/Turbo/Flash 不约而同分层；GLM-5.2 以 MIT 协议逼近 Opus，开源正从够用走向对标。"
+    "开源逼近前沿：Llama 4 与 GPT-5.6 能力差缩小至 5% 以内，企业自部署窗口加速到来",
+    "推理成本 -18.5%：大模型 API 价格战持续，调用成本季度环比下降近两成"
   ],
-  "footer": "AI斥候"
+  "style": "gradient-header"
 }

@@ -1,26 +1,33 @@
 {
-  "style": "warm-paper",
-  "title": "古典与未来交汇：AI重塑人文学科研究",
-  "digest": "AI辅助古籍整理 · 数字人文新范式 · 学术出版拥抱大模型",
-  "vol": "HUM.001",
+  "title": "GPT-5.6 发布，AI 进入多模态推理时代",
+  "digest": "OpenAI 发布 GPT-5.6 · 谷歌 Gemini 3 登顶 · Meta 开源 Llama 4",
+  "author": "AI前哨",
+  "vol": "AI.001",
   "cover": {
-    "bg_image": "https://example.com/cover.jpg"
+    "bg_image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900"
   },
   "sections": [
     {
       "heading": "前沿速递",
       "items": [
-        "AI辅助古籍数字化，整理效率提升 +120%<br/>某高校联合团队发布古籍数字化大模型，将残卷识别与校勘效率提升 +120%，已完成逾万卷珍稀古籍的数字化整理。研究者称这是数字人文领域的一次范式跃迁。（6月27日）",
-        "学术出版拥抱AI，论文处理周期缩短 -35%<br/>多家学术期刊引入AI辅助审稿与排版系统，论文平均处理周期缩短 -35%，但学术界对AI审稿的透明度与署名伦理仍存争议。（6月27日）"
+        "GPT-5.6 发布<br/>OpenAI 发布 GPT-5.6，原生支持图像、音频、视频联合推理，API 定价降低 40%（6月28日）",
+        "Gemini 3 登顶<br/>谷歌 Gemini 3 在 MMLU 基准测试得分 92.7%，首次超越人类专家水平（6月28日）"
       ],
       "images": [
-        "https://example.com/img1.jpg",
-        "https://example.com/img2.jpg"
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600"
       ]
+    },
+    {
+      "heading": "开源动态",
+      "items": [
+        "Llama 4 开源<br/>Meta 以 MIT 许可开源 Llama 4，支持 1M 上下文窗口，HuggingFace 下载量破百万（6月27日）"
+      ],
+      "images": []
     }
   ],
   "trends": [
-    "数字人文崛起：AI正将人文学科研究从手工考据推向规模化计算，古籍、文物、艺术史的数字化整理进入新阶段。",
-    "效率与伦理并存：论文处理周期缩短 -35% 的同时，学术透明度与署名伦理问题值得持续关注。"
-  ]
+    "开源逼近前沿：Llama 4 与 GPT-5.6 能力差缩小至 5% 以内，企业自部署窗口加速到来",
+    "推理成本 -18.5%：大模型 API 价格战持续，调用成本季度环比下降近两成"
+  ],
+  "style": "warm-paper"
 }

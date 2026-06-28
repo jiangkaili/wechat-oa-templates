@@ -36,3 +36,4 @@ test_thumb.png
 .vscode/
 *.swp
 *~
+docs/images/render_*.html
