@@ -1,0 +1,48 @@
+{
+  "title": "[AI前沿] 示例 · 晚间版",
+  "digest": "Anthropic Opus 4.5登顶 · OpenAI登陆AWS · 智谱GLM-5.2开源 | 10条前沿速递+趋势观察",
+  "vol": "AI.174",
+  "edition": "晚间版",
+  "subtitle": "Anthropic · OpenAI · 智谱AI",
+  "sections": [
+    {
+      "heading": "ANTHROPIC",
+      "color": "#D97757",
+      "items": [
+        "① <strong>Claude Opus 4.5 发布</strong><br/>新旗舰登顶电脑操作、电子表格、长程任务榜单；Claude for Excel beta 向 Max/Team/Enterprise 全量开放。",
+        "② <strong>MCP 连接器企业级集中授权</strong><br/>首批支持 Okta，管理员一次性配置即可让用户零接触登录获取 MCP 工具权限，覆盖 Chat/Code/Cowork。",
+        "③ <strong>Claude Code 接入 Artifacts</strong><br/>会话内容可一键生成可分享的实时网页，用于 PR 走查、事故面板、看板与发布清单，支持私有版本历史。",
+        "④ <strong>美方收紧出口管制</strong><br/>据 G7 讨论，美国要求 Anthropic 下架 Mythos 与 Fable 5 海外接入，AI 模型纳入战略基础设施分级。"
+      ]
+    },
+    {
+      "heading": "OPENAI",
+      "color": "#10A37F",
+      "items": [
+        "⑤ <strong>登陆 AWS Bedrock</strong><br/>正式补齐 Azure / GCP / AWS 三朵云布局，企业可在原有云采购合同内直接调用 GPT 系列模型。",
+        "⑥ <strong>Codex 周活破 500 万</strong><br/>非开发者用户占比 20%，增速是开发者的 3 倍，自主编码 Agent 正从程序员工具走向通用自动化平台。",
+        "⑦ <strong>成立 OpenAI Deployment Company</strong><br/>注资逾 40 亿美元，组建全球咨询与系统集成网络，将模型嵌入企业关键工作流。"
+      ]
+    },
+    {
+      "heading": "智谱 AI",
+      "color": "#3B82FE",
+      "items": [
+        "⑧ <strong>GLM-5.2 上线并开源</strong><br/>MIT 许可，1M 上下文 + 128K 输出，面向长程 Agent 与项目级 Coding，Code Arena 前端开发取得全球第一。",
+        "⑨ <strong>全面适配国产算力</strong><br/>已在华为昂腾、平头哥、寒武纪、昆仑芯、沐曦、海光、壁仁、摩尔线程八大平台完成推理适配。",
+        "⑩ <strong>思考强度可调</strong><br/>新增 thinking budget 控制，开发者可在模型能力、响应速度与 Token 成本之间灵活权衡。"
+      ]
+    }
+  ],
+  "global_news": [
+    "⑪ <strong>G7 酝酿“可信伙伴”框架</strong><br/>计划对前沿 AI 模型按地缘信任度分级开放，前沿模型权限正与合规身份深度绑定。",
+    "⑫ <strong>Gemini 3.5 Flash 加速推理</strong><br/>284 tokens/s 推理速度，主打 Agent 与编程任务，长上下文性价比战火延烧。",
+    "⑬ <strong>EU AI Act 进入执行阶段</strong><br/>高风险 AI 系统须满足透明度与文档化合规，欧洲市场企业级 AI 部署门槛抬升。"
+  ],
+  "trends": [
+    "① <strong>开源逼近前沿</strong>：GLM-5.2 以 MIT 许可+1M 上下文交付前沿能力，与 Claude/GPT 闭源旗舰的能力差正被快速抹平，企业自部署窗口加速到来。",
+    "② <strong>Agent 跨越开发者边界</strong>：Codex 非开发者用户增速 3 倍、AutoGLM 2.0 直追 GPT-5 Agent Mode，自主执行能力正从代码生成转向通用工作流自动化。",
+    "③ <strong>前沿模型政治化</strong>：美方对 Anthropic 出口管制叠加 G7 可信伙伴框架，模型访问权未来将取决于地缘合规与生态联盟，而不仅是技术指标。"
+  ],
+  "footer": "AI 前沿简报 · Auto-published by wechat-ai-briefing<br/>github.com/jiangkaili/wechat-ai-briefing"
+}

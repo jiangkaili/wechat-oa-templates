@@ -1,0 +1,38 @@
+# Credentials
+creds.py
+wx_creds.py
+config.json
+.env*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Personal draft/output files
+*.draft.json
+drafts/
+output/
+
+# Old/deprecated scripts and data
+publish.py
+publish_daily.py
+build_brief.py
+try_mass_send.py
+apple_style_analysis.md
+preview_new_design.html
+test_thumb.png
+
+# Old article JSONs (root only — don't block examples/)
+/ai_brief*.json
+/ai_briefing*.json
+/ai_frontier*.json
+/us_stock*.json
+/article.json
+
+# OS/IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

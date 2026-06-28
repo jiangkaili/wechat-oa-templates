@@ -1,0 +1,29 @@
+{
+  "style": "apple-minimalist",
+  "title": "AI 周报：GPT-5.6 发布，多模态成标配",
+  "digest": "OpenAI 发布 GPT-5.6·谷歌 Gemini 2.5 登顶竞技场·Meta 开源 Llama 4",
+  "author": "Your Name",
+  "cover": {
+    "bg_image": "https://images.unsplash.com/photo-1677442136019-21780ecad995"
+  },
+  "sections": [
+    {
+      "heading": "前沿速递",
+      "items": [
+        "GPT-5.6 发布<br/>OpenAI 发布 GPT-5.6，支持原生多模态理解，上下文窗口扩展至 200 万 tokens。该版本在 MMLU 基准测试中达到 92.3% 准确率，超越人类专家水平。这意味着 AI 在通用知识理解上已超越人类基准线。（6月27日）",
+        "Gemini 2.5 登顶<br/>谷歌 Gemini 2.5 在 LMSYS 竞技场排名第一，超越 GPT-4o 和 Claude 3.5。其原生视频理解能力成为关键优势，可在不依赖外部工具的情况下直接分析视频内容。（6月27日）",
+        "Meta 开源 Llama 4<br/>Meta 发布 Llama 4 系列，包含 8B、70B 和 405B 三个参数规模。405B 版本在多项基准测试中接近 GPT-4o，且完全开源可商用。这是目前最大的开源 AI 模型。（6月26日）"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485",
+        "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd",
+        "https://images.unsplash.com/photo-1518186285589-2f7649de83e0"
+      ]
+    }
+  ],
+  "trends": [
+    "多模态成标配：GPT-5.6 和 Gemini 2.5 均原生支持图文音视频，纯文本模型时代终结",
+    "上下文战争白热化：200 万 tokens 成为新基准，RAG 的必要性受到挑战",
+    "开源追赶闭源：Llama 4 405B 接近 GPT-4o 水平，开源与闭源差距缩小至 3 个月"
+  ]
+}

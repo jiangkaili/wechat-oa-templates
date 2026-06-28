@@ -1,0 +1,34 @@
+{
+  "template": "tech-terminal",
+  "article_data": {
+    "title": "AI前哨 · 每日技术速递",
+    "digest": "用终端美学读懂今日 AI 动态",
+    "vol": "042",
+    "sections": [
+      {
+        "heading": "MODEL RELEASES",
+        "items": [
+          "Hermes-5 发布<br/>Nous Research 开源 Hermes-5，上下文扩展至 256K，推理速度提升 35%（6月27日）",
+          "GLM-5.2 上线<br/>智谱 AI 推出 GLM-5.2，多语言基准测试平均得分 +12.4%（6月27日）"
+        ],
+        "images": []
+      },
+      {
+        "heading": "INDUSTRY NEWS",
+        "items": [
+          "算力市场动态<br/>H100 现货价格 -8.2%，云厂商预订量 +15.0%（6月27日）",
+          "开源生态<br/>HuggingFace 模型库突破 100 万，日均下载量 +22.7%"
+        ],
+        "images": []
+      }
+    ],
+    "trends": [
+      "大模型训练成本 -18.5%，推理成本 -11.3%",
+      "Agent 框架 GitHub Star 周 +9.4%",
+      "多模态论文数量 +27.1%"
+    ]
+  },
+  "image_urls": {
+    "cover": ""
+  }
+}
