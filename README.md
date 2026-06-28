@@ -1,4 +1,4 @@
-# 微信公众号模板库 WeChat OA Template Gallery
+# wechat-ai-briefing
 
 > 一套可插拔的微信公众号文章排版模板，配合 Python 发布脚本，自动创建草稿到公众号后台。
 
@@ -31,11 +31,13 @@
 
 - 6 种内置模板，`"style"` 字段一键切换
 - 模板可插拔：放一个 `composer.py` 到 `templates/your-style/` 即可
+- 共享工具模块 `templates/_shared.py`：`colorUpDown`（涨绿跌红）、`parse_item`（标题/正文/日期解析）
 - 统一 JSON 输入格式，模板间无缝切换
 - 自动上传内联图片到微信图床
 - 封面自动裁剪 900x383
 - 美股/财经数据自动标色（涨绿跌红）
 - 凭证懒加载，import 不触发认证
+- config.json 个人默认值（署名、默认模板）
 - 纯标准库 + Pillow，零外部依赖
 
 ## 快速开始 Quickstart
@@ -72,6 +74,7 @@ python3 publish_generic.py templates/apple-minimalist/example.json
   "title": "新闻关键词，一句解读",
   "digest": "一句话摘要",
   "author": "你的署名",
+  "vol": "AI.001",
   "cover": {
     "bg_image": "https://example.com/cover-image.jpg"
   },
@@ -95,37 +98,51 @@ python3 publish_generic.py templates/apple-minimalist/example.json
 
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| style | string | 否 | 模板名，默认 apple-minimalist |
+| style | string | 否 | 模板名，默认读 config.json → apple-minimalist |
 | title | string | 是 | 文章标题 |
 | digest | string | 否 | 摘要，显示在消息列表 |
 | author | string | 否 | 署名，默认读 config.json → 环境变量 WECHAT_AUTHOR → "Your Name" |
+| vol | string | 否 | 期号，如 "AI.001"，显示在标题栏 |
 | cover.bg_image | string | 否 | 封面图 URL，自动裁剪 900x383 |
 | sections[].heading | string | 是 | 栏目标题 |
-| sections[].items[] | string | 是 | 正文，用 `<br/>` 分隔标题和正文 |
+| sections[].items[] | string | 是 | 正文，用 `<br/>` 分隔标题和正文，末尾可附日期 |
 | sections[].images[] | string | 否 | 内联图片 URL，与 items 等长 |
 | trends[] | string | 否 | 趋势观察栏目 |
 
 ## 自定义模板 Custom Template
 
-创建 `templates/your-style/composer.py`：
+创建 `templates/your-style/composer.py`，导入共享工具：
 
 ```python
-def compose_html(article_data, image_urls):
-    """Returns HTML string for WeChat article body."""
-    import time, re
+"""Your custom style — describe the aesthetic here."""
+import os, sys, time
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from _shared import colorUpDown, parse_item
 
+
+def compose_html(article_data, image_urls):
+    today = time.strftime("%Y年%m月%d日")
     sections = article_data.get("sections", [])
-    parts = []
+    parts = [f'<section style="background:#FFF;padding:30px;"><p>{today}</p>']
 
     for section in sections:
-        heading = section["heading"]
+        parts.append(f'<p style="font-size:18px;font-weight:bold;">{section["heading"]}</p>')
         for item in section.get("items", []):
-            head, body = item.split("<br/>", 1) if "<br/>" in item else (item, "")
+            head, body, date_str = parse_item(item)
             parts.append(f'<p style="font-size:16px;">{head}</p>')
-            parts.append(f'<p style="font-size:15px;">{body}</p>')
+            if body:
+                parts.append(f'<p style="font-size:15px;">{body}</p>')
 
+    parts.append('</section>')
     return "\n".join(parts)
 ```
+
+### 共享工具 _shared.py
+
+| 函数 | 说明 |
+|------|------|
+| `colorUpDown(text)` | 将 `+5.2%` 标绿、`-3.1%` 标红 |
+| `parse_item(raw)` | 解析 `"标题<br/>正文（6月27日）"` → `(head, body, date_str)`，自动应用 colorUpDown |
 
 JSON 中设 `"style": "your-style"` 即可使用。
 
@@ -145,7 +162,7 @@ JSON 中设 `"style": "your-style"` 即可使用。
 0 10 * * * cd /path/to/wechat_publisher && python3 publish_generic.py /tmp/today_ai.json
 ```
 
-### Hermes Agent / AI Agent
+### AI Agent
 配合 AI Agent（如 Hermes Agent）自动搜索新闻、生成 JSON、调用脚本。详见 [examples/](examples/) 目录。
 
 ### GitHub Actions
@@ -160,12 +177,14 @@ JSON 中设 `"style": "your-style"` 即可使用。
 ## 项目结构 Project Layout
 
 ```
-wechat_publisher/
+wechat-ai-briefing/
 ├── publish_generic.py       # 发布脚本 (主入口)
 ├── clean_drafts.py          # 草稿批量清理工具
 ├── creds.example.py         # 凭证模板
+├── config.example.json      # 个人默认值模板 (署名、默认模板)
 ├── requirements.txt         # Python 依赖
 ├── templates/               # 模板画廊
+│   ├── _shared.py           # 共享工具 (colorUpDown, parse_item)
 │   ├── apple-minimalist/    # Apple 极简风
 │   ├── dark-mode/           # 暗黑模式
 │   ├── warm-paper/          # 暖纸期刊风
@@ -181,7 +200,7 @@ wechat_publisher/
 
 欢迎提交新模板！每个模板需要：
 
-1. `templates/your-style/composer.py` — 定义 `compose_html(article_data, image_urls) -> str`
+1. `templates/your-style/composer.py` — 定义 `compose_html(article_data, image_urls) -> str`，从 `_shared` 导入工具
 2. `templates/your-style/example.json` — 示例文章
 3. `templates/your-style/README.md` — 风格说明、配色表
 

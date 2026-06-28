@@ -3,7 +3,7 @@
 
 Usage: python3 clean_drafts.py
 """
-import json, sys
+import json, sys, urllib.request
 import publish_generic as p
 
 
@@ -15,7 +15,6 @@ def main():
     offset = 0
     deleted = 0
     while True:
-        import urllib.request
         url = f"{p.BASE}/draft/batchget?access_token={token}"
         req = urllib.request.Request(url,
             data=json.dumps({"offset": offset, "count": 20, "no_content": 1}).encode(),

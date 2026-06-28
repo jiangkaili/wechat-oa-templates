@@ -96,14 +96,23 @@ def get_token():
     return data["access_token"]
 
 
-def upload_permanent(token, image_bytes, filename="cover.png"):
-    """Upload permanent material (cover/thumbnail). Returns (media_id, url)."""
+def _build_multipart(image_bytes, filename):
+    """Build a multipart/form-data body for uploading an image.
+
+    Returns (boundary, body) where body is the encoded bytes.
+    """
     boundary = "----FormBoundary" + str(int(time.time()))
     body = f"--{boundary}\r\n".encode()
     body += f'Content-Disposition: form-data; name="media"; filename="{filename}"\r\n'.encode()
     body += b'Content-Type: image/png\r\n\r\n'
     body += image_bytes
     body += f"\r\n--{boundary}--\r\n".encode()
+    return boundary, body
+
+
+def upload_permanent(token, image_bytes, filename="cover.png"):
+    """Upload permanent material (cover/thumbnail). Returns (media_id, url)."""
+    boundary, body = _build_multipart(image_bytes, filename)
     url = f"{BASE}/material/add_material?access_token={token}&type=image"
     req = urllib.request.Request(url, data=body,
             headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
@@ -117,12 +126,7 @@ def upload_permanent(token, image_bytes, filename="cover.png"):
 
 def upload_content_image(token, image_bytes, filename="section.png"):
     """Upload content image (inline in article body). Returns WeChat CDN URL."""
-    boundary = "----FormBoundary" + str(int(time.time()))
-    body = f"--{boundary}\r\n".encode()
-    body += f'Content-Disposition: form-data; name="media"; filename="{filename}"\r\n'.encode()
-    body += b'Content-Type: image/png\r\n\r\n'
-    body += image_bytes
-    body += f"\r\n--{boundary}--\r\n".encode()
+    boundary, body = _build_multipart(image_bytes, filename)
     url = f"{BASE}/media/uploadimg?access_token={token}"
     req = urllib.request.Request(url, data=body,
             headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
@@ -136,8 +140,6 @@ def upload_content_image(token, image_bytes, filename="section.png"):
 
 def create_draft(token, title, content_html, digest, thumb_media_id, author=""):
     """Create a WeChat draft. Returns media_id (draft ID)."""
-    if not author:
-        author = os.environ.get("WECHAT_AUTHOR", "Your Name")
     article = {"articles": [{
         "title": title,
         "author": author,
@@ -219,7 +221,7 @@ def load_composer(style_name="apple-minimalist"):
         print(f"WARNING: Template '{style_name}' not found, falling back to apple-minimalist", file=sys.stderr)
         compose = _try_load("apple-minimalist")
     if compose is None:
-        raise RuntimeError(f"No templates found. Expected templates/apple-minimalist/composer.py")
+        raise RuntimeError("No templates found. Expected templates/apple-minimalist/composer.py")
     return compose
 
 
@@ -243,14 +245,14 @@ def main():
 
     # 1. Get token
     token = get_token()
-    print(f"Token: OK", file=sys.stderr)
+    print("Token: OK", file=sys.stderr)
 
     # 2. Generate and upload cover
     cover_config = article_data.get("cover", {})
     cover_img = generate_cover(cover_config)
     buf = io.BytesIO(); cover_img.save(buf, format='PNG')
     thumb_media_id, cover_url = upload_permanent(token, buf.getvalue(), "cover.png")
-    print(f"封面: OK", file=sys.stderr)
+    print("封面: OK", file=sys.stderr)
 
     image_urls = {"cover": cover_url}
     sections = article_data.get("sections", [])

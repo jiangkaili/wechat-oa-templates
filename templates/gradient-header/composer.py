@@ -5,11 +5,13 @@ an accent-colored section header with underline and a thin accent left-border on
 every item. Eye-catching yet readable. Designed for the wechat_publisher gallery.
 """
 
+import os, sys, time
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from _shared import colorUpDown, parse_item
+
 
 def compose_html(article_data, image_urls):
     """Returns HTML string for WeChat article body."""
-    import time, re
-
     today = time.strftime("%Y年%m月%d日")
     title = article_data.get("title", "")
     vol = article_data.get("vol", "")
@@ -18,11 +20,6 @@ def compose_html(article_data, image_urls):
     trends = article_data.get("trends", [])
     ACCENT = "#667eea"
     PAD = "28px"
-
-    def colorUpDown(text):
-        text = re.sub(r'(\+[0-9.]+%)', r'<span style="color:#22C55E;font-weight:bold;">\1</span>', text)
-        text = re.sub(r'(-[0-9.]+%)', r'<span style="color:#EF4444;font-weight:bold;">\1</span>', text)
-        return text
 
     parts = []
 
@@ -51,20 +48,8 @@ def compose_html(article_data, image_urls):
         )
 
         for idx, item in enumerate(items, 1):
-            if "<br/>" in item:
-                head_text, tail = item.split("<br/>", 1)
-            else:
-                head_text, tail = item, ""
-            head_text = colorUpDown(head_text)
-            if tail:
-                tail = colorUpDown(tail)
-            date_html = ""
-            if tail:
-                date_match = re.search(r'（\d+月\d+日）$', tail)
-                if date_match:
-                    date_label = date_match.group()
-                    tail = tail[:date_match.start()].rstrip()
-                    date_html = '<span style="color:#999999;font-weight:400;font-size:12px;margin-left:8px;">' + date_label + '</span>'
+            head_text, tail, date_str = parse_item(item)
+            date_html = ('<span style="color:#999999;font-weight:400;font-size:12px;margin-left:8px;">' + date_str + '</span>') if date_str else ""
 
             parts.append(
                 f'<section style="border-left:3px solid {ACCENT};padding-left:16px;margin:0 0 22px;">'

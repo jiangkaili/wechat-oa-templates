@@ -1,4 +1,4 @@
-# WeChat OA Template Gallery
+# wechat-ai-briefing
 
 > A pluggable WeChat Official Account article template gallery with a Python publisher that auto-creates drafts via the WeChat MP API.
 
@@ -9,6 +9,8 @@
 ---
 
 ## Preview
+
+![Template Gallery](docs/images/hero_templates.png)
 
 6 styles, same content data, switch with one field:
 
@@ -21,15 +23,21 @@
 | gradient-header | Gradient header | Purple gradient + white | Brand promotion, event previews |
 | tech-terminal | Terminal style | GitHub Dark | Geek culture, open-source projects |
 
+Live preview (Apple Minimalist · AI Briefing):
+
+![Live Preview](docs/images/preview_full.png)
+
 ## Features
 
 - 6 built-in templates, switch via `"style"` field
 - Pluggable: drop a `composer.py` into `templates/your-style/` and it works
+- Shared utilities in `templates/_shared.py`: `colorUpDown` (green up / red down), `parse_item` (title/body/date parsing)
 - Unified JSON input — switch templates without rewriting content
 - Auto-upload inline images to WeChat image hosting
 - Auto-crop cover to 900x383
 - Finance data auto-coloring (green up, red down)
 - Lazy credential loading — import without auth
+- config.json for personal defaults (author, default template)
 - Pure stdlib + Pillow, zero external dependencies
 
 ## Quickstart
@@ -42,7 +50,11 @@ pip install -r requirements.txt
 cp creds.example.py creds.py
 # Edit creds.py with your AppID and AppSecret
 
-# 3. Publish (creates a draft)
+# 3. (Optional) Configure personal defaults
+cp config.example.json config.json
+# Edit config.json to set author name and default template
+
+# 4. Publish (creates a draft)
 python3 publish_generic.py templates/apple-minimalist/example.json
 ```
 
@@ -57,6 +69,58 @@ Log in to mp.weixin.qq.com → Content Management → Drafts → Publish manuall
 ## Input Format
 
 See [README.md](README.md) for full JSON schema documentation.
+
+## Custom Template
+
+Create `templates/your-style/composer.py` and import shared utilities:
+
+```python
+"""Your custom style — describe the aesthetic here."""
+import os, sys, time
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from _shared import colorUpDown, parse_item
+
+
+def compose_html(article_data, image_urls):
+    today = time.strftime("%Y年%m月%d日")
+    sections = article_data.get("sections", [])
+    parts = [f'<section style="background:#FFF;padding:30px;"><p>{today}</p>']
+
+    for section in sections:
+        parts.append(f'<p style="font-size:18px;font-weight:bold;">{section["heading"]}</p>')
+        for item in section.get("items", []):
+            head, body, date_str = parse_item(item)
+            parts.append(f'<p style="font-size:16px;">{head}</p>')
+            if body:
+                parts.append(f'<p style="font-size:15px;">{body}</p>')
+
+    parts.append('</section>')
+    return "\n".join(parts)
+```
+
+Set `"style": "your-style"` in the JSON to use it.
+
+## Project Layout
+
+```
+wechat-ai-briefing/
+├── publish_generic.py       # Publisher (main entry point)
+├── clean_drafts.py          # Batch draft cleanup tool
+├── creds.example.py         # Credential template
+├── config.example.json      # Personal defaults template (author, default style)
+├── requirements.txt         # Python dependencies
+├── templates/               # Template gallery
+│   ├── _shared.py           # Shared utilities (colorUpDown, parse_item)
+│   ├── apple-minimalist/    # Apple minimalism
+│   ├── dark-mode/           # Dark mode
+│   ├── warm-paper/          # Warm journal
+│   ├── card-layout/         # Card layout
+│   ├── gradient-header/     # Gradient header
+│   └── tech-terminal/       # Terminal style
+├── examples/                # Full article examples
+└── docs/
+    └── images/              # Template preview images
+```
 
 ## Known Limitations
 

@@ -1,10 +1,11 @@
 """Warm Paper — warm cream background, serif fonts, book/journal aesthetic."""
+import os, sys, time
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from _shared import colorUpDown, parse_item
 
 
 def compose_html(article_data, image_urls):
     """Returns HTML string for WeChat article body."""
-    import time, re
-
     today = time.strftime("%Y年%m月%d日")
     vol = article_data.get("vol", "")
     sections = article_data.get("sections", [])
@@ -16,11 +17,6 @@ def compose_html(article_data, image_urls):
     LABEL = "#8B7E6E"      # warm gray labels
     BORDER = "#D4C9B8"     # warm gray underline/border
     FONT = "font-family:Georgia,'Times New Roman',serif;"
-
-    def colorUpDown(text):
-        text = re.sub(r'(\+[0-9.]+%)', r'<span style="color:#22C55E;font-weight:bold;">\1</span>', text)
-        text = re.sub(r'(-[0-9.]+%)', r'<span style="color:#EF4444;font-weight:bold;">\1</span>', text)
-        return text
 
     parts = []
     vol_part = f' &nbsp; {vol}' if vol else ''
@@ -46,22 +42,11 @@ def compose_html(article_data, image_urls):
         )
 
         for idx, item in enumerate(items, 1):
-            if "<br/>" in item:
-                head_text, tail = item.split("<br/>", 1)
-            else:
-                head_text, tail = item, ""
-            head_text = colorUpDown(head_text)
-            date_html = ""
-            if tail:
-                tail = colorUpDown(tail)
-                date_match = re.search(r'（\d+月\d+日）$', tail)
-                if date_match:
-                    date_label = date_match.group()
-                    tail = tail[:date_match.start()].rstrip()
-                    date_html = (
-                        f'<span style="{FONT}color:{LABEL};font-weight:400;font-size:12px;'
-                        f'margin-left:8px;">{date_label}</span>'
-                    )
+            head_text, tail, date_str = parse_item(item)
+            date_html = (
+                f'<span style="{FONT}color:{LABEL};font-weight:400;font-size:12px;'
+                f'margin-left:8px;">{date_str}</span>'
+            ) if date_str else ''
             parts.append(
                 f'<p style="{FONT}font-size:16px;color:{TEXT};line-height:1.9;margin:0 0 8px;font-weight:bold;">'
                 f'{head_text}{date_html}</p>'
@@ -77,7 +62,7 @@ def compose_html(article_data, image_urls):
                     f'<img src="{img_url}" style="max-width:100%;border-radius:4px;border:1px solid {BORDER};" /></p>'
                 )
             else:
-                parts.append(f'<p style="margin:0 0 20px;">&nbsp;</p>')
+                parts.append('<p style="margin:0 0 20px;">&nbsp;</p>')
 
     parts.append('</section>')
 
