@@ -20,15 +20,11 @@ def compose_html(article_data, image_urls):
     parts = []
     vol_part = f' &nbsp; {vol}' if vol else ''
 
-    # Header: date + vol, small gray
+    # Header + Content merged into one section (separate dark strip renders as empty black block in WeChat)
     parts.append(
         f'<section style="background:{BG};padding:60px {PAD} 0;">'
-        f'<p style="font-size:12px;color:{LABEL};margin:0 0 40px;letter-spacing:1px;">{today}{vol_part}</p>'
-        f'</section>'
+        f'<p style="font-size:13px;color:#A0A0A0;margin:0 0 40px;letter-spacing:1px;">{today}{vol_part}</p>'
     )
-
-    # Content
-    parts.append(f'<section style="background:{BG};padding:0 {PAD};">')
 
     for section in sections:
         heading = section["heading"]
@@ -63,18 +59,16 @@ def compose_html(article_data, image_urls):
             else:
                 parts.append('<p style="margin:0 0 20px;">&nbsp;</p>')
 
-    parts.append('</section>')
-
-    # Trends
+    # Trends (same section, no break — separate section causes white gap in WeChat)
     if trends:
-        parts.append(f'<section style="background:{BG};padding:8px {PAD} 0;">')
         parts.append(
-            f'<p style="font-size:18px;font-weight:bold;color:{TEXT};margin:0 0 20px;'
+            f'<p style="font-size:18px;font-weight:bold;color:{TEXT};margin:40px 0 20px;'
             f'padding-bottom:10px;border-bottom:1px solid {BORDER};">趋势观察</p>'
         )
         for trend in trends:
             trend = colorUpDown(trend)
             parts.append(f'<p style="font-size:15px;color:{BODY};line-height:1.8;margin:0 0 16px;">{trend}</p>')
-        parts.append('</section>')
+
+    parts.append('</section>')
 
     return "\n".join(parts)
