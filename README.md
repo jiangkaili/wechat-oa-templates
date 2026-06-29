@@ -168,6 +168,18 @@ JSON 中设 `"style": "your-style"` 即可使用。
 ### GitHub Actions
 注意：GitHub Runner IP 不固定，无法加入微信 IP 白名单。建议用自建服务器或本地 cron。
 
+## 质控闸门 Quality Gates
+
+发布前的自动化质检脚本，全部遵循统一约定：**`exit 0` 才放行，非 0 即阻断发布**。可单独运行，也可串进 AI Agent / cron 的发布流程。
+
+| 脚本 | 作用 | 用法 |
+| --- | --- | --- |
+| `typo_check.py` | 中文错别字 3 轮扫描（已知错误模式 + 逐字段审查 + 文档special检查） | `python3 typo_check.py [project_dir]` |
+| `check_image_source.py` | 配图 3 轮校验（① 水印源黑/灰/白名单 ② 高清分辨率+体积 ③ HTTP 可达+真图可解码） | `python3 check_image_source.py article.json [--strict] [--no-network]` |
+| `topic_memory.py` | 选题记忆库 —— 跨天去重 + 主题多样性，避免选题同质化 | 生成前 `python3 topic_memory.py recent [N]`；发布后 `python3 topic_memory.py add article.json` |
+
+> `check_image_source.py` 与 `topic_memory.py` 依赖 `requests` 和 `Pillow`（见 requirements.txt）。`topic_memory.py` 的数据文件 `topic_memory.json` 因号而异，不纳入版本库。
+
 ## 已知限制 Known Limitations
 
 - **个人订阅号不能 API 直接发布** — 返回 48001，只能创建草稿后手动发布。这是平台限制，不是 bug。
@@ -179,6 +191,9 @@ JSON 中设 `"style": "your-style"` 即可使用。
 ```
 wechat-oa-templates/
 ├── publish_generic.py       # 发布脚本 (主入口)
+├── typo_check.py            # 质控闸门：中文错别字 3 轮扫描
+├── check_image_source.py    # 质控闸门：配图 3 轮校验 (水印/高清/可达)
+├── topic_memory.py          # 质控闸门：选题记忆库 (去重 + 多样性)
 ├── clean_drafts.py          # 草稿批量清理工具
 ├── creds.example.py         # 凭证模板
 ├── config.example.json      # 个人默认值模板 (署名、默认模板)

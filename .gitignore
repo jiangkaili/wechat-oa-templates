@@ -30,6 +30,12 @@ test_thumb.png
 /us_stock*.json
 /article.json
 
+# 选题记忆库数据（运营产生，因号而异，不入库）
+topic_memory.json
+
+# Aider 本地历史
+.aider*
+
 # OS/IDE
 .DS_Store
 .idea/
