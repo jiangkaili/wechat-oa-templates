@@ -86,6 +86,9 @@ python3 publish_generic.py templates/apple-minimalist/example.json
       ],
       "images": [
         "https://example.com/article-image.jpg"
+      ],
+      "sources": [
+        "https://example.com/original-news-source"
       ]
     }
   ],
@@ -107,6 +110,7 @@ python3 publish_generic.py templates/apple-minimalist/example.json
 | sections[].heading | string | 是 | 栏目标题 |
 | sections[].items[] | string | 是 | 正文，用 `<br/>` 分隔标题和正文，末尾可附日期 |
 | sections[].images[] | string | 否 | 内联图片 URL，与 items 等长 |
+| sections[].sources[] | string | 否 | 原始来源 URL，与 items 等长，供 fact_check.py 核验 |
 | trends[] | string | 否 | 趋势观察栏目 |
 
 ## 自定义模板 Custom Template
@@ -176,9 +180,10 @@ JSON 中设 `"style": "your-style"` 即可使用。
 | --- | --- | --- |
 | `typo_check.py` | 中文错别字 3 轮扫描（已知错误模式 + 逐字段审查 + 文档special检查） | `python3 typo_check.py [project_dir]` |
 | `check_image_source.py` | 配图 3 轮校验（① 水印源黑/灰/白名单 ② 高清分辨率+体积 ③ HTTP 可达+真图可解码） | `python3 check_image_source.py article.json [--strict] [--no-network]` |
+| `fact_check.py` | 事实核验 3 轮闸门（① 来源完备 ② 来源可达 ③ 内容印证，抓取来源正文核对新闻锚点，治幻觉式新闻） | `python3 fact_check.py article.json [--strict] [--no-network]` |
 | `topic_memory.py` | 选题记忆库 —— 跨天去重 + 主题多样性，避免选题同质化 | 生成前 `python3 topic_memory.py recent [N]`；发布后 `python3 topic_memory.py add article.json` |
 
-> `check_image_source.py` 与 `topic_memory.py` 依赖 `requests` 和 `Pillow`（见 requirements.txt）。`topic_memory.py` 的数据文件 `topic_memory.json` 因号而异，不纳入版本库。
+> 三个核验脚本（`check_image_source.py` / `fact_check.py` / `topic_memory.py`）依赖 `requests` 和 `Pillow`（见 requirements.txt）。`fact_check.py` 要求文章 JSON 的每个 section 增加与 `items` 等长的 `sources` 数组（每条新闻的原始来源 URL）。`topic_memory.py` 的数据文件 `topic_memory.json` 因号而异，不纳入版本库。
 
 ## 已知限制 Known Limitations
 
@@ -193,6 +198,7 @@ wechat-oa-templates/
 ├── publish_generic.py       # 发布脚本 (主入口)
 ├── typo_check.py            # 质控闸门：中文错别字 3 轮扫描
 ├── check_image_source.py    # 质控闸门：配图 3 轮校验 (水印/高清/可达)
+├── fact_check.py            # 质控闸门：事实核验 3 轮 (来源完备/可达/内容印证)
 ├── topic_memory.py          # 质控闸门：选题记忆库 (去重 + 多样性)
 ├── clean_drafts.py          # 草稿批量清理工具
 ├── creds.example.py         # 凭证模板
