@@ -63,3 +63,37 @@
 - **需要一份本地仓库。** 插件不内置模板和脚本，`repoPath` 指向的目录必须存在且装好 `requirements.txt`（`requests`、`Pillow`）。仓库缺失或依赖未装时会直接报错，不会静默失败。
 - **工作目录写在仓库内。** 默认 `<repoPath>\.dsh-work`，因为沙箱子进程对系统 `%TEMP%` 可能没有写权限。建议把它加进仓库的 `.gitignore`。
 - **未经验证的路径。** 已在 DSH 桌面版上装配并实测：工具注册、预览渲染、`images` 与 `facts` 闸门的通过/拦截分支、中文输出编码。**真实草稿创建未实测**——它依赖你的公众号凭据与 IP 白名单，需要你首次运行时确认。
+
+## 安装步骤
+
+完整的图文步骤见仓库里的 `dsh-plugin/INSTALL.md`（详情页把相对链接渲染成纯文本，所以这里给出压缩版）。
+
+**1. 准备模板仓库**（插件不内置排版引擎）
+
+```
+git clone https://github.com/jiangkaili/wechat-oa-templates.git
+cd wechat-oa-templates
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+**2. 告诉插件仓库在哪** —— 编辑 `$DSH_HOME/profiles/<profile>/cordis.patch.yml`：
+
+```yaml
+- id: wechat-publisher
+  name: dsh-wechat-publisher
+  config:
+    repoPath: D:\work\wechat-oa-templates
+```
+
+**3. 填凭据** —— 公众号后台「设置与开发 → 基本配置」拿 AppID/AppSecret，`cp creds.example.py creds.py` 后填进去。
+
+**4. 加 IP 白名单** —— 同一页面的「IP 白名单」，加入当前公网出口 IP。家用宽带换 IP 后会重新报 `40164`。
+
+**5. 先绕过插件验证一次** —— 直接跑仓库脚本，成功说明凭据和白名单没问题：
+
+```
+.\.venv\Scripts\python.exe publish_generic.py examples\ai_frontier_sample.json
+```
+
+**6. 开始用** —— 先 `dryRun` 看排版（闸门同时会跑），确认后再建草稿。
