@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Jiangkaili DSH plugins",
+    "zh": "山城庄稼汉的 DSH 插件"
+  },
+  "description": {
+    "en": "Plugins that connect DeepSeek Harness to everyday publishing and operations work.",
+    "zh": "把 DeepSeek Harness 接到日常发布与运维工作上的插件。"
+  },
+  "metadata": {
+    "categories": {
+      "publishing": {
+        "title": {
+          "en": "Publishing",
+          "zh": "内容发布"
+        }
+      }
+    },
+    "labels": {
+      "wechat": {
+        "title": {
+          "en": "WeChat",
+          "zh": "微信"
+        }
+      }
+    },
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-wechat-publisher",
+      "title": {
+        "en": "WeChat article publishing",
+        "zh": "公众号发布"
+      },
+      "description": {
+        "en": "Run the typo, image and fact gates, apply an existing visual template, and create a WeChat Official Account draft.",
+        "zh": "跑完错别字、配图、事实三道质控闸门，套用已有模板，创建微信公众号草稿。"
+      },
+      "icon": "../dsh-plugin/icon.svg",
+      "author": "jiangkaili",
+      "homepage": "https://github.com/jiangkaili/wechat-oa-templates",
+      "repository": {
+        "url": "https://github.com/jiangkaili/wechat-oa-templates",
+        "directory": "dsh-plugin"
+      },
+      "metadata": {
+        "category": "publishing",
+        "keywords": [
+          "wechat",
+          "公众号",
+          "official account",
+          "draft",
+          "publishing",
+          "markdown",
+          "templates"
+        ],
+        "labels": [
+          "wechat"
+        ],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1795449600,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/jiangkaili/wechat-oa-templates.git",
+            "commit": "80ff7d47bab0e761a33c26361436b2f2c70fe153",
+            "path": "dsh-plugin"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.5 <0.3.0"
+          }
+        }
+      ]
+    }
+  ]
+}
