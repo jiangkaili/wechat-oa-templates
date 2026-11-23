@@ -1,0 +1,11 @@
+# Bundle patch: inserts one Host plugin row.
+# The config below is the packaged default. Override fields such as repoPath in
+# the user's own $DSH_HOME/profiles/<profile>/cordis.patch.yml instead of
+# editing this package.
+- insert:
+    - id: wechat-publisher
+      name: 'dsh-wechat-publisher'
+      config:
+        repoPath: D:\workspace\wechat-oa-templates
+        defaultStyle: apple-minimalist
+        timeoutMs: 240000

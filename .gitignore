@@ -43,3 +43,9 @@ topic_memory.json
 *.swp
 *~
 docs/images/render_*.html
+
+# Work directory used by the DSH wechat-publisher plugin
+.dsh-work/
+
+# Python virtualenv for the publisher scripts
+.venv/

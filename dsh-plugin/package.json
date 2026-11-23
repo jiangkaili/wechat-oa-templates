@@ -1,0 +1,27 @@
+{
+  "name": "dsh-wechat-publisher",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Publish a WeChat Official Account article: runs the quality gates and the template publisher from wechat-oa-templates, then reports the draft id.",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg"
+  ],
+  "engines": {
+    "dsh": ">=0.2.2-rc.5 <0.3.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
